@@ -1,3 +1,4 @@
+import sys
 import pygame
 from constants import *
 from player import Player
@@ -33,15 +34,19 @@ def main():
             if event.type == pygame.QUIT:
                 return
 
-        screen.fill((0, 0, 0))
-
         for u in updatable:
             u.update(dt)
 
         for a in asteroids:
             if a.collides(player):
                 print("Game over!")
-                exit(1)
+                sys.exit()
+            for s in shots:
+                if s.collides(a):
+                    s.kill()
+                    a.kill()
+
+        screen.fill((0, 0, 0))
 
         for d in drawable:
             d.draw(screen)
