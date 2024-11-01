@@ -44,7 +44,7 @@ def main():
             for s in shots:
                 if s.collides(a):
                     s.kill()
-                    a.kill()
+                    a.split()
 
         screen.fill((0, 0, 0))
 
